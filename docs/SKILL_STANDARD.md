@@ -2,10 +2,10 @@
 
 ## Structure and naming
 
-Each skill is a directory under `skills/` named in lowercase kebab-case. The directory name and `name` in frontmatter must match. Paths and filenames are case-sensitive in this repository, including on case-insensitive development systems. Use the exact names below:
+Each skill is a directory under `skills/<tier>/` named in lowercase kebab-case. Tiers are `.system`, `.curated` and `.experimental`; see [catalogue design](CATALOGUE.md). Skill names must be unique across all tiers, including case-insensitive comparisons. The directory name and `name` in frontmatter must match. Paths and filenames are case-sensitive in this repository, including on case-insensitive development systems. Use the exact names below:
 
 ```text
-skills/<skill-name>/
+skills/<tier>/<skill-name>/
   SKILL.md
   agents/openai.yaml
   references/           # when needed
