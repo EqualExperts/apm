@@ -1,0 +1,45 @@
+name: AI-prepared contribution
+description: Propose a well-researched change for maintainers to assess and implement.
+title: "[Proposal]: "
+body:
+  - type: markdown
+    attributes:
+      value: Review AI-generated content for accuracy. Do not include credentials, personal data, or client-confidential information.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and intended users
+      description: Explain the need, audience, and desired outcome.
+    validations:
+      required: true
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Scope and acceptance criteria
+      description: Include requirements, constraints, and how maintainers can verify completion.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and existing capabilities
+      description: Provide sources, relevant existing work, provenance, and applicable licences. Distinguish verified facts from generated suggestions.
+    validations:
+      required: true
+  - type: textarea
+    id: approach
+    attributes:
+      label: Suggested approach and considerations
+      description: Include alternatives, dependencies, compatibility, and risks where known.
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction for defects
+      description: Provide steps and expected and actual behaviour when applicable.
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification, assumptions, and open questions
+      description: State what was checked, what remains unverified, and what maintainers need to decide.
+    validations:
+      required: true
