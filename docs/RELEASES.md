@@ -1,6 +1,6 @@
 # Releases and support
 
-APM is in its foundation stage. There are no published releases yet. Work on `master` is evolving and should not be treated as a supported release.
+APM is in its foundation stage. There are no published releases yet. Work on `main` is evolving and should not be treated as a supported release.
 
 Before publishing a release, maintainers should identify its version and immutable source revision, document the included capabilities and compatibility, record verification and known limitations, and publish release notes. Consumers should pin a specific release or revision and review changes before updating. Forks and installed copies do not update automatically.
 
