@@ -1,18 +1,16 @@
 # Catalogue and distribution design
 
-APM separates lifecycle tier from technology classification. Skills have one home in a tier; catalogue entries and stacks can describe multiple technologies and workflows without duplicating the skill.
+APM separates lifecycle tier from technology classification. Skills live in `.apm/skills/` and have one lifecycle classification; catalogue entries and stacks can describe multiple technologies and workflows without duplicating the skill.
 
 ```text
-skills/
-  .system/          APM creator and installer skills
-  .curated/         Reviewed skills for general use
-  .experimental/    Skills being evaluated
+.apm/skills/        Deployable skill directories
+skills/              Tier descriptions
 catalogue/
   skills/           Skill discovery records
   stacks/           Named selections of skills
 ```
 
-These paths describe repository organisation, not harness discovery paths. APM's `.system` tier does not automatically install skills, grant permissions or override other instructions. Names must be unique across tiers, including on case-insensitive filesystems. Each skill follows the [skill standard](SKILL_STANDARD.md).
+These paths describe repository organisation, not harness discovery paths. The system classification does not automatically install skills, grant permissions or override other instructions. Names must be unique across skills, including on case-insensitive filesystems. Each skill follows the [skill standard](SKILL_STANDARD.md).
 
 ## Tiers
 

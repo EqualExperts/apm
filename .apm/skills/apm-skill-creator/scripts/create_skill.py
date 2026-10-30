@@ -8,7 +8,6 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("name")
     parser.add_argument("--root", type=Path, required=True, help="Repository root")
-    parser.add_argument("--tier", choices=[".system", ".curated", ".experimental"], required=True)
     parser.add_argument("--description", required=True)
     parser.add_argument("--title", required=True)
     parser.add_argument("--short-description", required=True)
@@ -21,15 +20,15 @@ def main():
         parser.error("metadata values must not be empty")
     if not 25 <= len(args.short_description) <= 64 or "$" + args.name not in args.prompt:
         parser.error("short description must be 25-64 characters and prompt must mention the skill")
-    skills = args.root / "skills"
-    if not all((skills / tier).is_dir() for tier in (".system", ".curated", ".experimental")):
-        parser.error("root must contain all APM skill tiers")
-    if any(child.name.casefold() == args.name.casefold() for tier in (".system", ".curated", ".experimental") for child in (skills / tier).iterdir() if child.is_dir()):
+    skills = args.root / ".apm" / "skills"
+    if not skills.is_dir():
+        parser.error("root must contain .apm/skills")
+    if any(child.name.casefold() == args.name.casefold() for child in skills.iterdir() if child.is_dir()):
         parser.error("skill name already exists")
     body = args.body_file.read_text(encoding="utf-8").strip()
     if not body:
         parser.error("body must not be empty")
-    target = skills / args.tier / args.name
+    target = skills / args.name
     target.mkdir()
     (target / "agents").mkdir()
     (target / "SKILL.md").write_text("---\nname: " + json.dumps(args.name) + "\ndescription: " + json.dumps(args.description) + "\n---\n\n" + body + "\n", encoding="utf-8")

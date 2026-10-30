@@ -1,0 +1,6 @@
+interface:
+  display_name: "APM Pipeline Integration"
+  short_description: "Integrate APM into CI pipelines"
+  default_prompt: "Use $apm-pipeline-integration to integrate APM into this pipeline."
+  icon_small: "./assets/equal-experts-icon-blue.png"
+  icon_large: "./assets/equal-experts-icon-blue.png"

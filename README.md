@@ -27,7 +27,7 @@ irm https://aka.ms/apm-windows | iex
 After installing the CLI, use the following command to register the Equal Experts marketplace once its marketplace manifest is published:
 
 ```text
-apm marketplace add EqualExperts/apm
+apm marketplace add EqualExperts/apm --ref master
 ```
 
 Adding a marketplace makes its packages available for discovery; it does not install them.
@@ -41,6 +41,7 @@ When you install a package, APM can detect the project's assistant. To select on
 - [Repository guidance](AGENTS.md) defines how agents work in this repository.
 - [Principles](docs/PRINCIPLES.md) describe the catalogue and its boundaries.
 - [Skill standard](docs/SKILL_STANDARD.md) defines the structure and requirements for skills.
+- [Primitive authoring](docs/PRIMITIVES.md) covers prompts, instructions and agents.
 - [Catalogue design](docs/CATALOGUE.md) describes tiers, technology stacks and planned APM functionality.
 - [Contributing](CONTRIBUTING.md) describes the fork and review workflow.
 - [Releases and support](docs/RELEASES.md) describe release and adoption expectations.
@@ -53,18 +54,26 @@ The repository is at its foundation stage. Initial creator and validator skills 
 
 ```text
 .github/                 Issue and pull request templates
+.apm/                    APM package primitives
+  skills/                Package skills
+  prompts/               Prompts and slash commands
+  instructions/          Persistent instructions
+  agents/                Agent definitions
+  hooks/                 Runtime hook definitions
 AGENTS.md                Guidance for agents working in this repository
 docs/                    Principles, skill standard, catalogue and release guidance
 skills/
-  .system/               APM creator, installer and maintenance skills
-  .curated/              Reviewed skills for general use
-  .experimental/         Skills being evaluated
+  .system/               System classification guidance
+  .curated/              Curated classification guidance
+  .experimental/         Experimental classification guidance
 catalogue/
   skills/                Planned skill discovery records
   stacks/                Planned named collections of skill references
 ```
 
 Skill tiers describe how APM organises its catalogue; they do not automatically install or activate skills in a harness. Catalogue records and stacks will classify skills across technologies without duplicating them. Initial creator and validator skills are present; catalogue tooling remains planned. See the [catalogue design](docs/CATALOGUE.md) for details.
+
+The `.apm/` directories follow Microsoft's [primitive authoring layout](https://microsoft.github.io/apm/producer/author-primitives/). Commands are authored as prompts; MCP servers are declared in a package's `apm.yml`, not a separate `.apm/` directory. The creator and validator skills live in `.apm/skills/`; the remaining primitive directories are empty. These directories alone do not make a package installable.
 
 ## Propose a contribution with AI
 

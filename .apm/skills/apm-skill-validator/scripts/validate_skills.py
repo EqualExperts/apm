@@ -4,8 +4,6 @@ import re
 from pathlib import Path
 import yaml
 
-TIERS = (".system", ".curated", ".experimental")
-
 def validate(path):
     errors, warnings = [], []
     name = path.name
@@ -50,8 +48,8 @@ def main():
     root = args.path
     if not root.is_dir():
         parser.error("path must be an existing directory")
-    if all((root / tier).is_dir() for tier in TIERS):
-        paths = [p for tier in TIERS for p in (root / tier).iterdir() if p.is_dir()]
+    if root.name == "skills":
+        paths = [p for p in root.iterdir() if p.is_dir()]
     else:
         paths = [root]
     failed = False

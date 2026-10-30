@@ -2,10 +2,10 @@
 
 ## Structure and naming
 
-Each skill is a directory under `skills/<tier>/` named in lowercase kebab-case. Tiers are `.system`, `.curated` and `.experimental`; see [catalogue design](CATALOGUE.md). Skill names must be unique across all tiers, including case-insensitive comparisons. The directory name and `name` in frontmatter must match. Paths and filenames are case-sensitive in this repository, including on case-insensitive development systems. Use the exact names below:
+Each skill is a directory under `.apm/skills/` named in lowercase kebab-case. The catalogue classifies skills as system, curated or experimental; see [catalogue design](CATALOGUE.md). Skill names must be unique, including case-insensitive comparisons. The directory name and `name` in frontmatter must match. Paths and filenames are case-sensitive in this repository, including on case-insensitive development systems. Use the exact names below:
 
 ```text
-skills/<tier>/<skill-name>/
+.apm/skills/<skill-name>/
   SKILL.md
   agents/openai.yaml
   references/           # when needed
@@ -17,7 +17,7 @@ skills/<tier>/<skill-name>/
 
 ## Instructions and references
 
-`SKILL.md` starts with YAML frontmatter containing `name` and `description`. The description states what the skill does and when to use it. Its body contains purpose, necessary workflow, constraints and links that say when to consult supporting resources. Keep it concise and specific enough to avoid accidental activation.
+`SKILL.md` starts with YAML frontmatter containing `name` and `description`. The description leads with the user intent and relevant trigger conditions, and must be at most 1024 characters. Keep the entrypoint under 500 lines and 5000 tokens; move conditional detail into references. Its body contains purpose, necessary workflow, constraints and links that say when to consult supporting resources. Keep it concise and specific enough to avoid accidental activation.
 
 Do not put examples in `SKILL.md`. Place useful examples in Markdown files in `references/`; split numerous or distinct examples into focused files. References contain conditional detail, sources and domain guidance; assets contain templates or other files used in output. Avoid redundant material and placeholders.
 

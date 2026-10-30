@@ -1,0 +1,33 @@
+{
+  "name": "equal-experts-apm",
+  "owner": {
+    "name": "Equal Experts",
+    "url": "https://github.com/EqualExperts"
+  },
+  "plugins": [
+    {
+      "name": "apm-skill-creator",
+      "description": "Create or update APM skills for the catalogue.",
+      "category": "Development",
+      "source": "./.apm/skills/apm-skill-creator"
+    },
+    {
+      "name": "apm-skill-validator",
+      "description": "Validate APM skill structure and metadata.",
+      "category": "Development",
+      "source": "./.apm/skills/apm-skill-validator"
+    },
+    {
+      "name": "apm-pipeline-integration",
+      "description": "Integrate Microsoft APM installation, validation and packaging into CI/CD pipelines.",
+      "category": "Development",
+      "source": "./.apm/skills/apm-pipeline-integration"
+    },
+    {
+      "name": "apm-ci-enforcement",
+      "description": "Configure and diagnose APM policy, audit and drift enforcement in CI.",
+      "category": "Development",
+      "source": "./.apm/skills/apm-ci-enforcement"
+    }
+  ]
+}

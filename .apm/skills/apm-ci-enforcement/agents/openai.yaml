@@ -1,0 +1,6 @@
+interface:
+  display_name: "APM CI Enforcement"
+  short_description: "Enforce APM policy and drift in CI"
+  default_prompt: "Use $apm-ci-enforcement to configure or diagnose an APM CI gate."
+  icon_small: "./assets/equal-experts-icon-blue.png"
+  icon_large: "./assets/equal-experts-icon-blue.png"
