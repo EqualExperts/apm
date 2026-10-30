@@ -26,9 +26,14 @@ irm https://aka.ms/apm-windows | iex
 
 After installing the CLI, use the following command to register the Equal Experts marketplace once its marketplace manifest is published:
 
-```text
+```shell
 apm marketplace add EqualExperts/apm
 ```
+
+```text
+apm marketplace add EqualExperts/apm --ref <commit-or-tag>
+```
+
 
 Adding a marketplace makes its packages available for discovery; it does not install them.
 
