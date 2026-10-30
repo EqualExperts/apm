@@ -2,6 +2,40 @@
 
 APM is Equal Experts' shared catalogue of agent capabilities. It helps consultants find and use reusable guidance and tooling across languages, clients, platforms and products, and contribute improvements back from their work.
 
+## Get started with APM
+
+### macOS · Homebrew
+
+```bash
+brew install apm
+```
+
+### Linux and macOS · without Homebrew
+
+```sh
+curl -sSL https://aka.ms/apm-unix | sh
+```
+
+### Windows · PowerShell
+
+```powershell
+irm https://aka.ms/apm-windows | iex
+```
+
+### Add a marketplace
+
+After installing the CLI, use the following command to register the Equal Experts marketplace once its marketplace manifest is published:
+
+```text
+apm marketplace add EqualExperts/apm
+```
+
+Adding a marketplace makes its packages available for discovery; it does not install them.
+
+For multiple GitHub accounts, you can use the active `gh` CLI account or set `GITHUB_APM_PAT_EQUALEXPERTS` to a token for the EqualExperts organisation. The account or token must have access to the repository and any required organisation authorisation.
+
+When you install a package, APM can detect the project's assistant. To select one explicitly, use `--target codex`, `--target claude`, or `--target copilot` with `apm install`. If no assistant is detected, select a target explicitly.
+
 ## Start here
 
 - [Repository guidance](AGENTS.md) defines how agents work in this repository.
