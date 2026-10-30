@@ -1,0 +1,1 @@
+Run `python scripts/validate_skills.py --help` for options. PyYAML and Python 3.10 or newer are required. Structural checks do not establish semantic quality, safe behaviour, harness compatibility or the absence of all examples. Warnings require manual review.

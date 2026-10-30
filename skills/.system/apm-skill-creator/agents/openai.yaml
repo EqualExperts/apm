@@ -1,0 +1,6 @@
+interface:
+  display_name: "APM Skill Creator"
+  short_description: "Create and maintain APM skills"
+  default_prompt: "Use $apm-skill-creator to create an APM skill."
+  icon_small: "./assets/equal-experts-icon-blue.png"
+  icon_large: "./assets/equal-experts-icon-blue.png"

@@ -13,7 +13,7 @@ APM is Equal Experts' shared catalogue of agent capabilities. It helps consultan
 - [Security](SECURITY.md) describes how to handle sensitive security findings.
 - [Catalogue](skills/README.md) describes where skills belong.
 
-The repository is at its foundation stage. The creator, installer, automated validation and catalogue will be developed against these standards; their presence or cross-harness support is not yet implied.
+The repository is at its foundation stage. Initial creator and validator skills are available; the installer and catalogue tooling are planned. Cross-harness support has not yet been verified.
 
 ## Repository structure
 
@@ -30,7 +30,7 @@ catalogue/
   stacks/                Planned named collections of skill references
 ```
 
-Skill tiers describe how APM organises its catalogue; they do not automatically install or activate skills in a harness. Catalogue records and stacks will classify skills across technologies without duplicating them. The directories are in place, but skills and catalogue tooling have yet to be implemented. See the [catalogue design](docs/CATALOGUE.md) for details.
+Skill tiers describe how APM organises its catalogue; they do not automatically install or activate skills in a harness. Catalogue records and stacks will classify skills across technologies without duplicating them. Initial creator and validator skills are present; catalogue tooling remains planned. See the [catalogue design](docs/CATALOGUE.md) for details.
 
 ## Propose a contribution with AI
 
