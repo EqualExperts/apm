@@ -2,6 +2,8 @@
 
 APM is Equal Experts' shared catalogue of agent capabilities. It helps consultants find and use reusable guidance and tooling across languages, clients, platforms and products, and contribute improvements back from their work.
 
+This is a marketplace **provider**—a "fancy text file provider"—with its entry point in root `marketplace.json`. It supplies skills, guidance, references and templates for consuming projects. A root `apm.yml` and local consumer installation are not required for that role. See [provider scope](docs/PROVIDER_SCOPE.md) for the content model and `llms.txt` placement guidance.
+
 ## Get started with APM
 
 ### macOS · Homebrew
