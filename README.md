@@ -45,6 +45,8 @@ When you install a package, APM can detect the project's assistant. To select on
 
 ## Start here
 
+- [Catalogue website](docs/PAGES.md) describes the GitHub Pages interface, build and publication setup.
+
 - [Repository guidance](AGENTS.md) defines how agents work in this repository.
 - [Principles](docs/PRINCIPLES.md) describe the catalogue and its boundaries.
 - [Skill standard](docs/SKILL_STANDARD.md) defines the structure and requirements for skills.

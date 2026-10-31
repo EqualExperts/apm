@@ -37,3 +37,5 @@ The APM skill creator and installer will be based on the OpenAI models, adapted 
 - Validation of catalogue references, stack membership, names, casing, provenance and declared compatibility, alongside meaningful behavioural checks.
 
 The metadata schema, supported harnesses, versioning strategy, installation records and conflict-resolution mechanism remain implementation decisions to define and test. These capabilities are requirements, not claims of existing functionality.
+
+The [catalogue website](PAGES.md) now implements browser search over published marketplace packages and optional named stack selections. Its minimal stack record format is documented there. This is discovery and install-command guidance; managed stack installation, version constraints and broader catalogue metadata remain planned.

@@ -1,0 +1,42 @@
+name: Catalogue Pages
+on:
+  push:
+    branches: [main]
+    paths: ['site/**', 'scripts/build_site.py', 'scripts/requirements-site.txt', 'tests/test_site.py', 'marketplace.json', '.apm/**', 'catalogue/**', '.github/workflows/pages.yml']
+  pull_request:
+    paths: ['site/**', 'scripts/build_site.py', 'scripts/requirements-site.txt', 'tests/test_site.py', 'marketplace.json', '.apm/**', 'catalogue/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Test catalogue build
+        # Safe YAML parsing supports quoted and multiline frontmatter descriptions.
+        run: |
+          python3 -m pip install -r scripts/requirements-site.txt
+          python3 -m unittest discover -s tests -v
+      - name: Build static site
+        run: python3 scripts/build_site.py
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: dist
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.PAGES_ENABLED == 'true'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+      - uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+        id: deployment
