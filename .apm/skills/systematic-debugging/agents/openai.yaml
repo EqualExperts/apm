@@ -1,0 +1,4 @@
+interface:
+  display_name: "Systematic Debugging"
+  short_description: "Trace failures to evidence-backed causes"
+  default_prompt: "Use $systematic-debugging for the requested change and report the evidence."

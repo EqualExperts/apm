@@ -1,0 +1,10 @@
+{
+  "name": "tdd",
+  "title": "TDD Stack",
+  "description": "Experimental test-first development, systematic debugging and evidence-based completion workflows adapted from Superpowers.",
+  "packages": [
+    "test-driven-development",
+    "systematic-debugging",
+    "verification-before-completion"
+  ]
+}

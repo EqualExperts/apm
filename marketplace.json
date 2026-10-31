@@ -28,6 +28,24 @@
       "description": "Configure and diagnose APM policy, audit and drift enforcement in CI.",
       "category": "Development",
       "source": "./.apm/skills/apm-ci-enforcement"
+    },
+    {
+      "name": "test-driven-development",
+      "description": "Use when implementing a feature or fixing a bug with test-first red-green-refactor development.",
+      "category": "Development",
+      "source": "./.apm/skills/test-driven-development"
+    },
+    {
+      "name": "systematic-debugging",
+      "description": "Use when a test fails or software behaves unexpectedly and the cause needs investigation before a fix.",
+      "category": "Development",
+      "source": "./.apm/skills/systematic-debugging"
+    },
+    {
+      "name": "verification-before-completion",
+      "description": "Use before reporting that a change is complete, a defect is fixed, or checks pass; match each claim to current evidence.",
+      "category": "Development",
+      "source": "./.apm/skills/verification-before-completion"
     }
   ]
 }

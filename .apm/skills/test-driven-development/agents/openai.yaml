@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test-Driven Development"
+  short_description: "Develop behaviour through red-green-refactor"
+  default_prompt: "Use $test-driven-development for the requested change and report the evidence."
