@@ -82,6 +82,24 @@
       "description": "Set up the GuicedEE marketplace guidance and migrate Quarkus to Guice-based reactive GuicedEE.",
       "category": "Java",
       "source": "./.apm/skills/quarkus-to-guicedee"
+    },
+    {
+      "name": "quarkus-to-nodejs",
+      "description": "Rewrite Quarkus services for Node.js with contract tests. Experimental guidance.",
+      "category": "Migration",
+      "source": "./.apm/skills/quarkus-to-nodejs"
+    },
+    {
+      "name": "quarkus-to-go",
+      "description": "Rewrite Quarkus services for Go with contract tests. Experimental guidance.",
+      "category": "Migration",
+      "source": "./.apm/skills/quarkus-to-go"
+    },
+    {
+      "name": "quarkus-to-http4k",
+      "description": "Migrate Quarkus services to Kotlin http4k handlers. Experimental guidance.",
+      "category": "Migration",
+      "source": "./.apm/skills/quarkus-to-http4k"
     }
   ]
 }

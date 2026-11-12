@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quarkus to http4k"
+  short_description: "Migrate Quarkus services to Kotlin http4k handlers"
+  default_prompt: "Use $quarkus-to-http4k to assess this Quarkus application's migration to http4k, implement a vertical slice, and verify contracts."

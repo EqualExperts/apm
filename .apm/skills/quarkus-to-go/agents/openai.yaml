@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quarkus to Go"
+  short_description: "Rewrite Quarkus services for Go with contract tests"
+  default_prompt: "Use $quarkus-to-go to assess this Quarkus application's migration to Go, implement a vertical slice, and verify contracts."
