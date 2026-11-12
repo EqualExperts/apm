@@ -100,6 +100,12 @@
       "description": "Migrate Quarkus services to Kotlin http4k handlers. Experimental guidance.",
       "category": "Migration",
       "source": "./.apm/skills/quarkus-to-http4k"
+    },
+    {
+      "name": "spring-to-quarkus",
+      "description": "Experimental Spring-to-Quarkus migration with native and compatibility strategy assessment and HTTP verification.",
+      "category": "Migration",
+      "source": "./.apm/skills/spring-to-quarkus"
     }
   ]
 }

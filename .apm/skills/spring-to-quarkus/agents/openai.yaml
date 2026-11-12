@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spring to Quarkus"
+  short_description: "Migrate Spring applications to verified Quarkus contracts"
+  default_prompt: "Use $spring-to-quarkus to assess this Spring application, choose a Quarkus migration strategy, and implement and verify a vertical slice."

@@ -74,6 +74,22 @@ jobs:
         run: mvn --batch-mode --no-transfer-progress -f tests/fixtures/spring-to-micronaut-baseline/pom.xml verify
       - name: Verify native Micronaut fixture
         run: mvn --batch-mode --no-transfer-progress -f tests/fixtures/spring-to-micronaut/pom.xml verify
+  spring-quarkus-smoke:
+    name: Spring to Quarkus native HTTP contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Verify Spring HTTP baseline
+        run: mvn --batch-mode --no-transfer-progress -f tests/fixtures/spring-to-micronaut-baseline/pom.xml verify
+      - name: Verify native Quarkus HTTP target
+        run: mvn --batch-mode --no-transfer-progress -f tests/fixtures/spring-to-quarkus/pom.xml verify
   vertx-smoke:
     name: Quarkus to Vert.x HTTP and event-bus smoke
     runs-on: ubuntu-latest
