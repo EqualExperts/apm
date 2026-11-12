@@ -58,6 +58,12 @@
       "description": "Experimental GitHub CLI installation, authentication and repository access guidance.",
       "category": "Local setup",
       "source": "./.apm/skills/github-cli-setup"
+    },
+    {
+      "name": "spring-boot-4-migration",
+      "description": "Experimental, source-reviewed Spring Boot 3.5 to 4.0 migration guidance with explicit verification boundaries.",
+      "category": "Java",
+      "source": "./.apm/skills/spring-boot-4-migration"
     }
   ]
 }
