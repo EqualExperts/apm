@@ -8,6 +8,8 @@ For a GitHub-based workspace, inspect Git and GitHub CLI versions and confirm th
 
 Install only the selected assistant and requested tools. Use the product's current official installation instructions and the organisation's approved package source. Record the version actually installed, not a guessed latest version. Assistant installation and authentication are separate from installing the APM CLI or consuming this marketplace.
 
+When APM needs an explicit GitHub credential, follow [Supply GitHub authentication to APM](../../github-cli-setup/references/setup.md#supply-github-authentication-to-apm) to capture the chosen GitHub CLI account's token into `GITHUB_APM_PAT` in the same terminal that runs APM. Verify retrieval succeeded without displaying the value. Public github.com packages do not require a token.
+
 ## Provider choices
 
 | Capability | Input needed before setup | Official starting point |

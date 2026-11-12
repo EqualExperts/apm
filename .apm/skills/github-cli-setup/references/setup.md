@@ -28,9 +28,31 @@ When the user intends a saved-account switch for the host, use:
 gh auth switch --hostname HOST --user ACCOUNT
 ```
 
-This changes the active saved account for that host, not just the current repository. For scoped work, preserve existing scoped credential handling or use an already approved process-specific environment. Always recheck effective identity. Do not run `gh auth token`, use token-display options or expose `hosts.yml` as diagnostic output.
+This changes the active saved account for that host, not just the current repository. For scoped work, preserve existing scoped credential handling or use an already approved process-specific environment. Always recheck effective identity. Do not run `gh auth token` as standalone diagnostic output, use token-display options or expose `hosts.yml`. Capturing a credential directly into the intended process environment for APM is covered below.
 
 Git transport setup is optional and separate. Do not run `gh auth setup-git` or rewrite credential helpers unless the task requires Git transport configuration and its scope is understood. Do not alter global author email or signing settings to repair CLI authentication.
+
+## Supply GitHub authentication to APM
+
+After verifying the intended saved GitHub account, set APM's dedicated variable in the terminal that will run APM. Preserve existing injected credentials unless replacing them is intentional. These commands capture the token without printing its value.
+
+PowerShell:
+
+```powershell
+$env:GITHUB_APM_PAT = gh auth token --hostname github.com
+```
+
+Bash / Zsh:
+
+```bash
+export GITHUB_APM_PAT="$(gh auth token --hostname github.com)"
+```
+
+For a specific saved account, append `--user ACCOUNT` to the `gh auth token` invocation, replacing `ACCOUNT` with the verified login. This avoids changing the host-wide active account. Stop if credential retrieval fails; do not proceed with an empty variable. Never print the variable, enable shell tracing around credential capture, commit its value or put it in a generated install script.
+
+Run marketplace registration and installation in that same terminal. The variable is inherited by child processes; an already-running IDE or agent does not receive it automatically. These examples do not persist the secret in a shell profile or machine environment.
+
+Public github.com packages need no token, and current APM can use the active GitHub CLI login directly. The explicit variable selects a credential when that is needed. APM's GitHub lookup differs from GitHub CLI: per-organisation `GITHUB_APM_PAT_{ORG}`, then `GITHUB_APM_PAT`, `GITHUB_TOKEN`, `GH_TOKEN`, GitHub CLI and Git credentials. Check higher-priority organisation variables when diagnosing a wrong account, without displaying values. See the [APM authentication guide](https://microsoft.github.io/apm/consumer/authentication/) and [detailed lookup rules](https://github.com/microsoft/apm/blob/main/docs/src/content/docs/getting-started/authentication.md), reviewed 2026-11-12.
 
 ## Sources
 
