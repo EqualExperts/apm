@@ -1,0 +1,6 @@
+{
+  "name": "sdd",
+  "title": "SDD Stack",
+  "description": "Specification-driven delivery: reusable prompts for adoption, specification, design, planning, implementation and continuation, with test-first development, debugging and evidence-based verification.",
+  "packages": ["docs-first-delivery", "sdd-prompts", "test-driven-development", "systematic-debugging", "verification-before-completion"]
+}

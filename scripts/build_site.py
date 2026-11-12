@@ -45,7 +45,7 @@ def catalogue(root=ROOT):
         files = [skill] if skill.is_file() else prompts
         descriptions = [frontmatter_description(p) for p in files]
         description = '\n\n'.join(d for d in descriptions if d) or plugin['description']
-        title = ' '.join(word.upper() if word in ('apm', 'ci', 'api', 'cli') else {'github': 'GitHub', 'nodejs': 'Node.js', 'http4k': 'http4k'}.get(word, word.title())
+        title = ' '.join(word.upper() if word in ('apm', 'ci', 'api', 'cli', 'sdd') else {'github': 'GitHub', 'nodejs': 'Node.js', 'http4k': 'http4k'}.get(word, word.title())
                          for word in name.removeprefix('apm-').split('-'))
         if name in ('apm-pipeline-integration', 'apm-ci-enforcement'):
             title = 'APM ' + title

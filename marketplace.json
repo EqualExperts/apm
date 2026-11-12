@@ -106,6 +106,18 @@
       "description": "Experimental Spring-to-Quarkus migration with native and compatibility strategy assessment and HTTP verification.",
       "category": "Migration",
       "source": "./.apm/skills/spring-to-quarkus"
+    },
+    {
+      "name": "docs-first-delivery",
+      "description": "Experimental specification-driven workflow from scope and design through implementation and verification.",
+      "category": "Development",
+      "source": "./.apm/skills/docs-first-delivery"
+    },
+    {
+      "name": "sdd-prompts",
+      "description": "Six specification-driven delivery prompts. Verified Copilot installation; Codex uses manual prompt reading alongside the docs-first skill.",
+      "category": "Development",
+      "source": "./.apm/prompts/sdd-prompts"
     }
   ]
 }
