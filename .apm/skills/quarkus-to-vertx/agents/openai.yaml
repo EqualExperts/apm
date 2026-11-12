@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quarkus to Pure Vert.x"
+  short_description: "Replace Quarkus with explicitly wired Vert.x"
+  default_prompt: "Use $quarkus-to-vertx to remove Quarkus from this application, replace its managed facilities with pure Vert.x wiring, and verify behaviour."

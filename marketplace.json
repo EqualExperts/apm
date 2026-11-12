@@ -70,6 +70,12 @@
       "description": "Experimental Spring-to-Micronaut migration with compatibility assessment and behavioural verification.",
       "category": "Java",
       "source": "./.apm/skills/spring-to-micronaut"
+    },
+    {
+      "name": "quarkus-to-vertx",
+      "description": "Experimental Quarkus removal and pure Vert.x migration with explicit lifecycle and reactive contract verification.",
+      "category": "Java",
+      "source": "./.apm/skills/quarkus-to-vertx"
     }
   ]
 }
