@@ -46,6 +46,18 @@
       "description": "Use before reporting that a change is complete, a defect is fixed, or checks pass; match each claim to current evidence.",
       "category": "Development",
       "source": "./.apm/skills/verification-before-completion"
+    },
+    {
+      "name": "local-agentic-setup",
+      "description": "Experimental guidance for preparing and verifying a local agent workspace.",
+      "category": "Local setup",
+      "source": "./.apm/skills/local-agentic-setup"
+    },
+    {
+      "name": "github-cli-setup",
+      "description": "Experimental GitHub CLI installation, authentication and repository access guidance.",
+      "category": "Local setup",
+      "source": "./.apm/skills/github-cli-setup"
     }
   ]
 }

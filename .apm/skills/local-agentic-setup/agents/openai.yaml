@@ -1,0 +1,4 @@
+interface:
+  display_name: "Local Agentic Setup"
+  short_description: "Prepare and verify a local agent workspace"
+  default_prompt: "Use $local-agentic-setup to prepare my chosen assistant and project tools, preserving existing configuration and verifying access."

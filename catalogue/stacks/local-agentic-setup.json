@@ -1,0 +1,6 @@
+{
+  "name": "local-agentic-setup",
+  "title": "Local Agentic Setup",
+  "description": "Experimental workspace preparation and GitHub CLI setup guidance. Check existing tools, complete authentication locally and verify repository access before starting agent-assisted work.",
+  "packages": ["local-agentic-setup", "github-cli-setup"]
+}

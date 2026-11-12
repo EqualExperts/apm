@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub CLI Setup"
+  short_description: "Configure GitHub CLI and verify repository access"
+  default_prompt: "Use $github-cli-setup to check or configure GitHub CLI for this workspace and verify the intended account and repository access."
