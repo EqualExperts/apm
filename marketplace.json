@@ -64,6 +64,12 @@
       "description": "Experimental, source-reviewed Spring Boot 3.5 to 4.0 migration guidance with explicit verification boundaries.",
       "category": "Java",
       "source": "./.apm/skills/spring-boot-4-migration"
+    },
+    {
+      "name": "spring-to-micronaut",
+      "description": "Experimental Spring-to-Micronaut migration with compatibility assessment and behavioural verification.",
+      "category": "Java",
+      "source": "./.apm/skills/spring-to-micronaut"
     }
   ]
 }

@@ -58,3 +58,19 @@ jobs:
         env:
           BOOT_LINE: ${{ matrix.boot }}
         run: mvn --batch-mode --no-transfer-progress -f "tests/fixtures/spring-boot-migration/$BOOT_LINE/pom.xml" verify
+  micronaut-smoke:
+    name: Spring to Micronaut HTTP smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Verify Spring HTTP baseline
+        run: mvn --batch-mode --no-transfer-progress -f tests/fixtures/spring-to-micronaut-baseline/pom.xml verify
+      - name: Verify native Micronaut fixture
+        run: mvn --batch-mode --no-transfer-progress -f tests/fixtures/spring-to-micronaut/pom.xml verify

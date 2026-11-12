@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spring to Micronaut"
+  short_description: "Migrate Spring applications to Micronaut safely"
+  default_prompt: "Use $spring-to-micronaut to assess this Spring application's migration to Micronaut, implement a vertical slice, and verify behaviour."
