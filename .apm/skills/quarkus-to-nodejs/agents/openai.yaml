@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quarkus to Node.js"
+  short_description: "Rewrite Quarkus services for Node.js with contract tests"
+  default_prompt: "Use $quarkus-to-nodejs to assess this Quarkus application's migration to Node.js, implement a vertical slice, and verify contracts."
