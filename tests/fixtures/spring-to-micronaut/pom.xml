@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <parent><groupId>io.micronaut.platform</groupId><artifactId>micronaut-parent</artifactId><version>4.10.24</version></parent>
+  <groupId>example</groupId><artifactId>micronaut-migration-smoke</artifactId><version>1.0</version>
+  <properties><jdk.version>17</jdk.version><release.version>17</release.version><micronaut.runtime>netty</micronaut.runtime></properties>
+  <dependencies>
+    <dependency><groupId>io.micronaut</groupId><artifactId>micronaut-http-server-netty</artifactId></dependency>
+    <dependency><groupId>io.micronaut.serde</groupId><artifactId>micronaut-serde-jackson</artifactId></dependency>
+    <dependency><groupId>ch.qos.logback</groupId><artifactId>logback-classic</artifactId><scope>runtime</scope></dependency>
+    <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><scope>test</scope></dependency>
+  </dependencies>
+  <build><plugins><plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId>
+    <configuration><annotationProcessorPaths>
+      <path><groupId>io.micronaut</groupId><artifactId>micronaut-inject-java</artifactId><version>${micronaut.core.version}</version></path>
+      <path><groupId>io.micronaut.serde</groupId><artifactId>micronaut-serde-processor</artifactId><version>${micronaut.serialization.version}</version></path>
+    </annotationProcessorPaths></configuration>
+  </plugin></plugins></build>
+</project>
