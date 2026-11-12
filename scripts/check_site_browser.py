@@ -5,6 +5,11 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 
 
+def require(condition, message="Browser assertion failed"):
+    if not condition:
+        raise AssertionError(message)
+
+
 def check(url):
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(channel='msedge', headless=True)
@@ -22,12 +27,12 @@ def check(url):
         page.get_by_role('checkbox', name='Select Local Agentic Setup Toolkit', exact=True).check()
         expect(page.locator('#selection-count')).to_have_text('2 selected')
         page.get_by_role('checkbox', name='Select GitHub CLI Setup', exact=True).uncheck()
-        assert page.get_by_role('checkbox', name='Select Local Agentic Setup Toolkit', exact=True).evaluate('(box) => box.indeterminate')
+        require(page.get_by_role('checkbox', name='Select Local Agentic Setup Toolkit', exact=True).evaluate('(box) => box.indeterminate'))
         page.locator('#clear-selection').click()
         data = json.loads(page.locator('#data').text_content())
         total = len(data['entries']) + len(data['stacks'])
         expect(page.locator('.card')).to_have_count(total)
-        assert page.locator('.card').first.bounding_box()['width'] == 270
+        require(page.locator('.card').first.bounding_box()['width'] == 270)
         page.locator('#search').fill('when a user requests a reusable skill')
         expect(page.locator('.card')).to_have_count(1)
         expect(page.locator('.card p')).to_contain_text('when a user requests a reusable skill')
@@ -40,7 +45,7 @@ def check(url):
         page.locator('#target').select_option('claude')
         expect(page.locator('#install-command')).to_contain_text('apm-skill-validator@equal-experts-apm --target claude')
         page.locator('[data-copy="install-command"]').click()
-        assert '--target claude' in page.evaluate('navigator.clipboard.readText()')
+        require('--target claude' in page.evaluate('navigator.clipboard.readText()'))
         page.keyboard.press('Escape')
         expect(page.locator('#detail')).not_to_be_visible()
         page.locator('#search').fill('')
@@ -63,15 +68,15 @@ def check(url):
         expect(page.locator('#selection-count')).to_have_text('2 selected')
         page.locator('#copy-selection').click()
         script = page.evaluate('navigator.clipboard.readText()')
-        assert script.count('apm marketplace add EqualExperts/apm') == 1
-        assert script.count('apm install ') == 2
-        assert script.count('--target copilot') == 2
+        require(script.count('apm marketplace add EqualExperts/apm') == 1)
+        require(script.count('apm install ') == 2)
+        require(script.count('--target copilot') == 2)
         page.locator('#search').fill('')
         expect(page.get_by_role('checkbox', name='Select Skill Creator', exact=True)).to_be_checked()
         page.locator('h1').click()
         page.screenshot(path='dist/desktop-preview.png', full_page=True)
         page.set_viewport_size({'width': 390, 'height': 844})
-        assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), 'Mobile horizontal overflow'
+        require(page.evaluate('document.documentElement.scrollWidth <= innerWidth'), 'Mobile horizontal overflow')
         page.locator('.card button').first.click()
         expect(page.locator('#detail')).to_be_visible()
         page.keyboard.press('Escape')
@@ -83,7 +88,7 @@ def check(url):
         page.locator('#clear-selection').click()
         expect(page.locator('#copy-selection')).to_be_disabled()
         expect(page.locator('#selection-script')).not_to_contain_text('apm install')
-        assert not errors, errors
+        require(not errors, errors)
         browser.close()
         print('Browser checks passed: search, URL state, details, target, clipboard, stacks, mobile overflow; no page errors.')
 

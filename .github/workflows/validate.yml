@@ -1,0 +1,60 @@
+name: Validate and scan marketplace
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  validate:
+    name: Skill validation and security scans
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Install validation tools
+        run: python -m pip install -r scripts/requirements-site.txt -r scripts/requirements-security.txt
+      - name: Validate all skills
+        run: python .apm/skills/apm-skill-validator/scripts/validate_skills.py .apm/skills
+      - name: Test and build catalogue
+        run: |
+          python -m unittest discover -s tests -v
+          python scripts/build_site.py
+      - name: Scan Python source
+        run: python -m bandit -r scripts .apm -q
+      - name: Audit declared Python dependencies
+        run: python -m pip_audit -r scripts/requirements-site.txt -r scripts/requirements-security.txt
+      - name: Scan GitHub Actions
+        run: zizmor --offline --persona auditor .github/workflows
+      - name: Scan tracked files for secrets
+        run: |
+          python -m detect_secrets scan > secret-report.json
+          python scripts/check_secret_report.py secret-report.json
+  migration-smoke:
+    name: Boot migration smoke (${{ matrix.boot }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        boot: ['3.5', '4.0']
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Verify migration fixture
+        env:
+          BOOT_LINE: ${{ matrix.boot }}
+        run: mvn --batch-mode --no-transfer-progress -f "tests/fixtures/spring-boot-migration/$BOOT_LINE/pom.xml" verify

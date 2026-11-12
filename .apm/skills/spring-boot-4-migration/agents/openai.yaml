@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spring Boot 3 to 4 Migration"
+  short_description: "Migrate Spring Boot 3 applications to Boot 4.0"
+  default_prompt: "Use $spring-boot-4-migration to assess this application's Boot 3 to 4.0 migration, apply scoped changes, and verify the result."

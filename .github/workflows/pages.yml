@@ -13,9 +13,12 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build:
+    name: Build catalogue
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
       - name: Test catalogue build
         # Safe YAML parsing supports quoted and multiline frontmatter descriptions.
         run: |
@@ -27,12 +30,13 @@ jobs:
         with:
           path: dist
   deploy:
+    name: Publish Pages
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.PAGES_ENABLED == 'true'
     needs: build
     runs-on: ubuntu-latest
     permissions:
-      pages: write
-      id-token: write
+      pages: write # Publish the built catalogue to Pages.
+      id-token: write # Authenticate the deployment using OIDC.
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
