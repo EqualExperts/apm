@@ -1,0 +1,4 @@
+interface:
+  display_name: "Docs-first Delivery"
+  short_description: "Specify, plan, implement and verify traceable changes"
+  default_prompt: "Use $docs-first-delivery to assess the current workstream, identify its next specification-driven stage, and carry out the authorized work with verification evidence."
