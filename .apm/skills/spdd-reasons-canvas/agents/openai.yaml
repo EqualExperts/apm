@@ -1,0 +1,4 @@
+interface:
+  display_name: "SPDD REASONS Canvas"
+  short_description: "Turn grounded requirements into a REASONS canvas"
+  default_prompt: "Use $spdd-reasons-canvas for the requested SPDD stage, preserving repository conventions and reporting evidence and unresolved decisions."

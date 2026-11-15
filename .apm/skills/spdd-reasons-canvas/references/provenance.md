@@ -1,0 +1,13 @@
+# Provenance and adaptation boundaries
+
+Condensed adaptation of [spdd-reasons-canvas](https://github.com/gszhangwei/open-spdd/blob/3991ffa2cd6670fdb6f329ca62799ccb96d0e7d9/internal/templates/data/core/spdd-reasons-canvas.md) from Wei Zhang's OpenSPDD project, reviewed at revision `3991ffa2cd6670fdb6f329ca62799ccb96d0e7d9` on 2026-11-15. Upstream MIT terms are retained in [LICENSE.txt](../LICENSE.txt). This package is not an unchanged upstream installation or a vendor-endorsed integration.
+
+Method context: [Structured-Prompt-Driven Development](https://martinfowler.com/articles/structured-prompt-driven/) by Wei Zhang and Jessie Jie Xia, published 2026-04-28 and updated with Q&A on 2026-05-04. The article is linked for context; its prose, illustrations and billing example are not redistributed. The adaptation derives from the linked MIT-licensed command template.
+
+APM changes: concise stage instructions, examples outside SKILL.md, repository-defined artifact locations, no mandatory issue IDs or harness-specific question tools, no automatic CLI installation or commits, and no blanket requirement to seek approval again when the action is already authorized. Checks run by meaningful slice rather than only after all generation. Valid requirements remain intact when the code has a defect; reverse sync cannot approve a changed safeguard. These are APM adaptation choices, not claims that upstream has identical behaviour.
+
+Tier: experimental. Stewardship: Equal Experts APM maintainers; individual long-term ownership remains unassigned. Requires authorized project context and relevant inspection/editing tools; implementation checks require the consuming project's own test environment. No OpenSPDD executable, MCP service, network connection or companion skill is required for the packaged workflow. Network access is needed only to refresh upstream references.
+
+Structural validation, catalogue rendering and manual scenario review are separate from agent behaviour, consumer installation and production delivery. No cross-harness reliability or security certification is claimed. Current local check results are recorded in the contribution summary; historical results from other skills do not validate this package.
+
+Parent/child stage guidance is an APM addition: enable permitted independent work on capable runtimes, retain one canonical artifact owner and validate joined results. The optional parallel-stage-orchestration package supplies current platform sources and a shared scheduling contract; sequential use remains supported. This addition has not been evaluated across runtimes.

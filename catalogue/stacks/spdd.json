@@ -1,0 +1,16 @@
+{
+  "name": "spdd",
+  "title": "SPDD Stack",
+  "description": "Structured Prompt-Driven Development with optional parent/child parallel stages: analysis, REASONS canvas, implementation, prompt updates and sync, supported by testing, debugging and verification.",
+  "packages": [
+    "parallel-stage-orchestration",
+    "spdd-analysis",
+    "spdd-reasons-canvas",
+    "spdd-generate",
+    "spdd-prompt-update",
+    "spdd-sync",
+    "test-driven-development",
+    "systematic-debugging",
+    "verification-before-completion"
+  ]
+}

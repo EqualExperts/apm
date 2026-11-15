@@ -2,6 +2,7 @@
 import argparse
 import json
 from pathlib import Path
+from urllib.parse import parse_qs, urlsplit
 from playwright.sync_api import sync_playwright, expect
 
 
@@ -18,6 +19,12 @@ def check(url):
         errors = []
         page.on('pageerror', lambda error: errors.append(str(error)))
         page.goto(url)
+        data = json.loads(page.locator('#data').text_content())
+        expect(page.locator('[data-type]').first).to_have_text('Stacks')
+        expect(page.get_by_role('button', name='Stacks', exact=True)).to_have_attribute('aria-pressed', 'true')
+        expect(page.locator('.card')).to_have_count(len(data['stacks']))
+        page.reload()
+        expect(page.locator('.card')).to_have_count(len(data['stacks']))
         intro = page.locator('.hero-disclosure')
         intro.locator('summary').click()
         expect(page.locator('h1')).not_to_be_visible()
@@ -26,11 +33,20 @@ def check(url):
         expect(page.locator('h1')).to_be_visible()
         page.get_by_role('checkbox', name='Select Local Agentic Setup Toolkit', exact=True).check()
         expect(page.locator('#selection-count')).to_have_text('2 selected')
+        page.get_by_role('button', name='Everything', exact=True).click()
         page.get_by_role('checkbox', name='Select GitHub CLI Setup', exact=True).uncheck()
         require(page.get_by_role('checkbox', name='Select Local Agentic Setup Toolkit', exact=True).evaluate('(box) => box.indeterminate'))
         page.locator('#clear-selection').click()
-        data = json.loads(page.locator('#data').text_content())
         total = len(data['entries']) + len(data['stacks'])
+        expect(page.locator('.card')).to_have_count(total)
+        for sort in ('name', 'category'):
+            page.locator('#sort').select_option(sort)
+            kinds = page.locator('.card-top .pill').all_text_contents()
+            require(kinds[:len(data['stacks'])] == ['STACK'] * len(data['stacks']), 'Stacks must precede individual capabilities')
+        page.locator('#sort').select_option('name')
+        require(parse_qs(urlsplit(page.url).query).get('type') == ['all'])
+        page.reload()
+        expect(page.get_by_role('button', name='Everything', exact=True)).to_have_attribute('aria-pressed', 'true')
         expect(page.locator('.card')).to_have_count(total)
         require(page.locator('.card').first.bounding_box()['width'] == 270)
         page.locator('#search').fill('when a user requests a reusable skill')
@@ -56,6 +72,16 @@ def check(url):
             page.get_by_role('checkbox', name='Select ' + stack['title'], exact=True).check()
             expect(page.locator('#selection-count')).to_have_text(str(len(stack['packages'])) + ' selected')
             page.locator('#clear-selection').click()
+        delivery_stacks = [stack for stack in data['stacks'] if stack['name'] in ('spdd', 'jira-bdd')]
+        require(len(delivery_stacks) == 2, 'Both delivery stacks must be discoverable')
+        for stack in delivery_stacks:
+            page.get_by_role('checkbox', name='Select ' + stack['title'], exact=True).check()
+        members = set().union(*(stack['packages'] for stack in delivery_stacks))
+        expect(page.locator('#selection-count')).to_have_text(str(len(members)) + ' selected')
+        script = page.locator('#selection-script').text_content()
+        require(script.count('apm install parallel-stage-orchestration@') == 1, 'Shared orchestration must install once')
+        require(script.count('apm install ') == len(members))
+        page.locator('#clear-selection').click()
         page.get_by_role('button', name='Everything', exact=True).click()
         expect(page.locator('.card')).to_have_count(total)
         Path('dist').mkdir(exist_ok=True)
@@ -88,9 +114,23 @@ def check(url):
         page.locator('#clear-selection').click()
         expect(page.locator('#copy-selection')).to_be_disabled()
         expect(page.locator('#selection-script')).not_to_contain_text('apm install')
+        page.get_by_role('button', name='Stacks', exact=True).click()
+        page.locator('#search').fill('nothing-matches-this')
+        page.get_by_role('button', name='Show all capabilities', exact=True).click()
+        expect(page.locator('.card')).to_have_count(total)
+        page.reload()
+        expect(page.locator('.card')).to_have_count(total)
+        page.goto(url.rstrip('/') + '/?type=skill&q=jira')
+        expect(page.get_by_role('button', name='Skills', exact=True)).to_have_attribute('aria-pressed', 'true')
+        expect(page.locator('#search')).to_have_value('jira')
+        expect(page.get_by_role('heading', name='Jira BDD Delivery', exact=True)).to_be_visible()
+        require(all(kind == 'SKILL' for kind in page.locator('.card-top .pill').all_text_contents()))
+        page.goto(url.rstrip('/') + '/?type=invalid')
+        expect(page.get_by_role('button', name='Stacks', exact=True)).to_have_attribute('aria-pressed', 'true')
+        expect(page.locator('.card')).to_have_count(len(data['stacks']))
         require(not errors, errors)
         browser.close()
-        print('Browser checks passed: search, URL state, details, target, clipboard, stacks, mobile overflow; no page errors.')
+        print('Browser checks passed: default stacks, ordering, search, URL state, reset, details, target, clipboard, stacks, mobile overflow; no page errors.')
 
 
 if __name__ == '__main__':

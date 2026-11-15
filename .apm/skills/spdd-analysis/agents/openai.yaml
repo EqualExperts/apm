@@ -1,0 +1,4 @@
+interface:
+  display_name: "SPDD Analysis"
+  short_description: "Ground SPDD requirements in code and domain evidence"
+  default_prompt: "Use $spdd-analysis for the requested SPDD stage, preserving repository conventions and reporting evidence and unresolved decisions."

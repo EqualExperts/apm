@@ -1,0 +1,4 @@
+interface:
+  display_name: "Parallel Stage Orchestration"
+  short_description: "Coordinate parallel stages with parent and child agents"
+  default_prompt: "Use $parallel-stage-orchestration to coordinate this delivery through supported parent and child agents, parallelising independent stages and verifying the integrated result."

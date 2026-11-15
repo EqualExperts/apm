@@ -1,0 +1,4 @@
+interface:
+  display_name: "SPDD Implementation"
+  short_description: "Implement a REASONS canvas and verify its contracts"
+  default_prompt: "Use $spdd-generate for the requested SPDD stage, preserving repository conventions and reporting evidence and unresolved decisions."

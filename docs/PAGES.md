@@ -6,6 +6,8 @@ Install the build dependency with `python -m pip install -r scripts/requirements
 
 ## Catalogue inputs
 
+Stacks is the first filter and the default opening view. Everything places stacks before individual capabilities for either sort option. Explicit type filters in shared URLs take precedence over the default, and selecting Everything writes `type=all` so a reload preserves that choice. Search applies to the selected filter; the empty-state reset opens Everything.
+
 Capability cards have styled native checkboxes. The right-hand Your toolkit panel keeps the selected packages while visitors search or change filters, expands stack selections into unique packages, and generates marketplace registration followed by one install command per selected package. Visitors choose an assistant, remove individual packages or clear the selection, then copy the entire script. Selection is held only for the current page session and resets on reload. On narrow screens the panel follows the results. Commands are plain APM CLI invocations suitable for PowerShell, Bash and Zsh with APM already installed; the website never executes them.
 
 For browser checks, install the optional Python `playwright` package and use an installed Microsoft Edge browser. With the preview server running, execute `python scripts/check_site_browser.py`. This checks search, URL state, the details dialog, assistant selection, clipboard copying and mobile overflow. Screenshots are written under ignored `dist/`; do not include those preview files in the publication artifact. Hosted CI currently runs the Python build tests, not this browser check.

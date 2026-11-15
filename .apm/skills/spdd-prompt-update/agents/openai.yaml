@@ -1,0 +1,4 @@
+interface:
+  display_name: "SPDD Prompt Update"
+  short_description: "Reconcile changed intent with an existing canvas"
+  default_prompt: "Use $spdd-prompt-update for the requested SPDD stage, preserving repository conventions and reporting evidence and unresolved decisions."

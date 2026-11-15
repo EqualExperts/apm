@@ -1,0 +1,4 @@
+interface:
+  display_name: "Jira BDD Delivery"
+  short_description: "Drive Jira tickets through BDD to review-ready PRs"
+  default_prompt: "Use $jira-bdd-delivery to deliver the selected Jira tickets, deriving executable acceptance scenarios and iterating through implementation and verification until the changes are review-ready or a concrete blocker remains."

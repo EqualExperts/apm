@@ -118,6 +118,48 @@
       "description": "Six specification-driven delivery prompts. Verified Copilot installation; Codex uses manual prompt reading alongside the docs-first skill.",
       "category": "Development",
       "source": "./.apm/prompts/sdd-prompts"
+    },
+    {
+      "name": "parallel-stage-orchestration",
+      "description": "Experimental parent/child coordination for parallel delivery stages, with dependency joins, integrated verification and sequential fallback.",
+      "category": "Development",
+      "source": "./.apm/skills/parallel-stage-orchestration"
+    },
+    {
+      "name": "jira-bdd-delivery",
+      "description": "Experimental Jira-driven BDD delivery loop from acceptance scenarios to verified, review-ready pull requests.",
+      "category": "Development",
+      "source": "./.apm/skills/jira-bdd-delivery"
+    },
+    {
+      "name": "spdd-analysis",
+      "description": "Experimental SPDD analysis grounded in requirements, code and domain evidence.",
+      "category": "Development",
+      "source": "./.apm/skills/spdd-analysis"
+    },
+    {
+      "name": "spdd-reasons-canvas",
+      "description": "Experimental REASONS canvas design with acceptance traceability.",
+      "category": "Development",
+      "source": "./.apm/skills/spdd-reasons-canvas"
+    },
+    {
+      "name": "spdd-generate",
+      "description": "Experimental implementation from an SPDD canvas with behavioural verification.",
+      "category": "Development",
+      "source": "./.apm/skills/spdd-generate"
+    },
+    {
+      "name": "spdd-prompt-update",
+      "description": "Experimental intent-to-spec updates for maintained SPDD canvases.",
+      "category": "Development",
+      "source": "./.apm/skills/spdd-prompt-update"
+    },
+    {
+      "name": "spdd-sync",
+      "description": "Experimental code-to-spec synchronisation that preserves requirements and safeguards.",
+      "category": "Development",
+      "source": "./.apm/skills/spdd-sync"
     }
   ]
 }

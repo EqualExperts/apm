@@ -1,0 +1,4 @@
+interface:
+  display_name: "SPDD Code-to-Spec Sync"
+  short_description: "Reconcile code drift without weakening the specification"
+  default_prompt: "Use $spdd-sync for the requested SPDD stage, preserving repository conventions and reporting evidence and unresolved decisions."
