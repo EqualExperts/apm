@@ -1,5 +1,7 @@
 # Provenance and verification boundaries
 
+Updated 2026-11-15 with [current stable version selection](versions.md), including Micronaut 5 prerequisites. This update is documentation research and structural validation only; the historical fixture results below were not rerun and do not establish Spring Boot 4.1.2 or Micronaut 5.2.6 runtime compatibility.
+
 Independently authored for this marketplace on 2026-11-12 from the official sources linked in [migration decisions](migration.md). No third-party skill or vendor example source was copied. Research found official Spring integration guides, but no dedicated migration skill with sufficient evidence to adopt confidently. Vendor documentation is linked, not redistributed; this is not a vendor-endorsed skill.
 
 The Micronaut for Spring guide inspected on that date identifies version 6.1.0 and limits compatibility to documented features. Native migration and annotation compatibility are distinct paths. Do not infer support for every Spring version.

@@ -67,21 +67,21 @@
     },
     {
       "name": "spring-to-micronaut",
-      "description": "Experimental Spring-to-Micronaut migration with compatibility assessment and behavioural verification.",
+      "description": "Experimental Spring migration to the latest stable Micronaut with version checks and behavioural verification.",
       "category": "Java",
       "source": "./.apm/skills/spring-to-micronaut"
+    },
+    {
+      "name": "quarkus-to-micronaut",
+      "description": "Experimental Quarkus migration to the latest stable Micronaut with extension mapping and behavioural verification.",
+      "category": "Java",
+      "source": "./.apm/skills/quarkus-to-micronaut"
     },
     {
       "name": "quarkus-to-vertx",
       "description": "Experimental Quarkus removal and pure Vert.x migration with explicit lifecycle and reactive contract verification.",
       "category": "Java",
       "source": "./.apm/skills/quarkus-to-vertx"
-    },
-    {
-      "name": "quarkus-to-guicedee",
-      "description": "Set up the GuicedEE marketplace guidance and migrate Quarkus to Guice-based reactive GuicedEE.",
-      "category": "Java",
-      "source": "./.apm/skills/quarkus-to-guicedee"
     },
     {
       "name": "quarkus-to-nodejs",
