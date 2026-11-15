@@ -11,6 +11,85 @@ def require(condition, message="Browser assertion failed"):
         raise AssertionError(message)
 
 
+def check_stack_selection(page, data):
+    stacks = {stack['name']: stack for stack in data['stacks']}
+
+    def checkbox(name):
+        return page.get_by_role('checkbox', name='Select ' + stacks[name]['title'], exact=True)
+
+    def expect_packages(names):
+        expect(page.locator('#selection-count')).to_have_text(f'{len(names)} selected')
+        expect(page.locator('#selection-list li')).to_have_count(len(names))
+        commands = [line for line in page.locator('#selection-script').text_content().splitlines()
+                    if line.startswith('apm install ')]
+        expected = {f'apm install {name}@{data["marketplace"]} --target codex' for name in names}
+        require(set(commands) == expected and len(commands) == len(expected),
+                'Toolkit commands must contain each selected package exactly once')
+
+    def expect_unselected(name):
+        expect(checkbox(name)).not_to_be_checked()
+        require(not checkbox(name).evaluate('(box) => box.indeterminate'),
+                f'Unselected stack {name} must not appear partly selected through shared packages')
+
+    # Either stack can be selected alone, or removed while the other stays complete.
+    for first, second in [('sdd', 'spdd'), ('spdd', 'sdd')]:
+        checkbox(first).check()
+        expect_packages(set(stacks[first]['packages']))
+        for name in stacks:
+            if name != first:
+                expect_unselected(name)
+        checkbox(second).check()
+        expect_packages(set(stacks[first]['packages']) | set(stacks[second]['packages']))
+        checkbox(first).uncheck()
+        expect(checkbox(second)).to_be_checked()
+        expect_unselected(first)
+        expect_packages(set(stacks[second]['packages']))
+        # Re-rendering filtered cards must retain the explicit choices.
+        page.locator('#search').fill(stacks[second]['title'])
+        expect(checkbox(second)).to_be_checked()
+        page.locator('#search').fill('')
+        expect_unselected(first)
+        checkbox(second).uncheck()
+        expect_packages(set())
+
+    # Jira shares packages with both delivery stacks, including orchestration.
+    for name in ('sdd', 'spdd', 'jira-bdd'):
+        checkbox(name).check()
+    checkbox('spdd').uncheck()
+    expect_packages(set(stacks['sdd']['packages']) | set(stacks['jira-bdd']['packages']))
+    expect(checkbox('sdd')).to_be_checked()
+    expect(checkbox('jira-bdd')).to_be_checked()
+    expect_unselected('spdd')
+    page.locator('#clear-selection').click()
+
+    # A skill picked individually survives removal of a stack that also includes it.
+    page.get_by_role('button', name='Everything', exact=True).click()
+    shared = page.get_by_role('checkbox', name='Select Test Driven Development', exact=True)
+    shared.check()
+    checkbox('sdd').check()
+    checkbox('sdd').uncheck()
+    expect_packages({'test-driven-development'})
+    expect_unselected('sdd')
+
+    # Removing an individual package still customizes the selected stacks.
+    checkbox('sdd').check()
+    checkbox('spdd').check()
+    page.get_by_role('button', name='Remove Test Driven Development', exact=True).click()
+    members = set(stacks['sdd']['packages']) | set(stacks['spdd']['packages'])
+    expect_packages(members - {'test-driven-development'})
+    for name in ('sdd', 'spdd'):
+        require(checkbox(name).evaluate('(box) => box.indeterminate'))
+    shared.check()
+    expect_packages(members)
+    expect(checkbox('sdd')).to_be_checked()
+    expect(checkbox('spdd')).to_be_checked()
+    page.locator('#clear-selection').click()
+    expect_packages(set())
+    for name in stacks:
+        expect_unselected(name)
+    page.get_by_role('button', name='Stacks', exact=True).click()
+
+
 def check(url):
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(channel='msedge', headless=True)
@@ -68,6 +147,7 @@ def check(url):
         page.locator('#search').fill('')
         page.get_by_role('button', name='Stacks', exact=True).click()
         expect(page.locator('.card')).to_have_count(len(data['stacks']))
+        check_stack_selection(page, data)
         if data['stacks']:
             stack = data['stacks'][0]
             page.get_by_role('checkbox', name='Select ' + stack['title'], exact=True).check()
@@ -135,7 +215,7 @@ def check(url):
         expect(page.locator('.card')).to_have_count(len(data['stacks']))
         require(not errors, errors)
         browser.close()
-        print('Browser checks passed: default stacks, ordering, search, URL state, reset, details, target, clipboard, stacks, mobile overflow; no page errors.')
+        print('Browser checks passed: independent stacks, shared packages, package overrides, default stacks, ordering, search, URL state, reset, details, target, clipboard, mobile overflow; no page errors.')
 
 
 if __name__ == '__main__':
