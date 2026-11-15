@@ -11,7 +11,7 @@ Inventory the Spring/Boot version, build wrapper, language/JDK, web stack, bean 
 
 Choose a strategy using [migration decisions](references/migration.md). For a complete framework replacement, plan an explicit native migration. Use Micronaut for Spring only when the selected module version documents every retained Spring feature; its annotation translation is not a general Spring runtime. Resolve ambiguous scope using the application's concrete compatibility gaps.
 
-Pin compatible platform, build-plugin and annotation-processor versions from target-version documentation. Retain the supported Java baseline unless the target requires a change. Do not infer Boot 4 or Security 7 compatibility from a guide for earlier Spring versions.
+Resolve the latest stable target using [version selection](references/versions.md) before editing. Pin compatible platform, build-plugin and annotation-processor versions from target-version documentation. Account for Micronaut 5's JDK 25 baseline and Kotlin/Maven restriction. Do not infer Boot 4 or Security 7 compatibility from a guide for earlier Spring versions.
 
 Migrate one vertical slice first: build and annotation processing, startup, constructor-injected service, controller, configuration, serialization and tests. Replace APIs deliberately rather than bulk-renaming annotations. Confirm generated beans and routes in a clean build. Preserve reactive behaviour and keep blocking work off Netty event-loop threads.
 

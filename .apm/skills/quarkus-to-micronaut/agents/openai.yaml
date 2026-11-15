@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quarkus to Micronaut"
+  short_description: "Migrate Quarkus services to current Micronaut"
+  default_prompt: "Use $quarkus-to-micronaut to assess this Quarkus application's migration to the latest stable Micronaut, implement a vertical slice, and verify its contracts."

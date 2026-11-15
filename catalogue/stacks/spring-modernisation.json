@@ -1,0 +1,9 @@
+{
+  "name": "spring-modernisation",
+  "title": "Spring Boot and Micronaut Migration Pack",
+  "description": "Experimental guidance for upgrading Spring Boot 3 through 3.5 to Boot 4.0, or migrating Spring applications to the latest stable Micronaut. Choose the migration path that matches the application goal.",
+  "packages": [
+    "spring-boot-4-migration",
+    "spring-to-micronaut"
+  ]
+}
