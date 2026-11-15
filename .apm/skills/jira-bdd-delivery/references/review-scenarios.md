@@ -11,6 +11,11 @@ These scenarios were inspected against the packaged instructions on 2026-11-15. 
 | All local checks pass but required CI is pending | Wait through supported mechanisms or checkpoint as waiting; no completion claim. | Completion and truthful status. |
 | Review-ready PR exists and ticket requires merge before Done | Report agent delivery complete but ticket awaiting merge; do not transition to Done. | Separate delivery and Jira states. |
 | Read-only Jira integration | Work within authorized code/PR scope; prepare unsent Jira evidence and report limitation. | Jira write discipline. |
+| Connected Jira OAuth integration is already available | Reuse it and verify a selected issue read; do not require REST environment variables. | Setup connection choice. |
+| Personal API token has scopes | Use the verified Cloud ID and Atlassian gateway route; do not send it to the unscoped site route. | Setup REST routing table. |
+| Variables were set after the IDE started | Verify presence in the actual agent process; restart or reconnect without printing secrets. | Setup environment inheritance. |
+| A `.env` file exists but the adapter does not load it | Configure the actual adapter environment; do not claim the skill loads the file. | Setup variable contract. |
+| Connection check succeeds but PR access is absent | Report verified Jira read access only and establish repository authentication separately. | Setup preflight and delivery preparation. |
 | Duplicate webhook or lost PR-create response | Reconcile issue ownership and existing PR before another write. | Trigger contract and retry/resumption. |
 | Agent's own update emits another event | Do not recursively launch another delivery. | External trigger filtering. |
 | Deterministic failure repeats with unchanged input | Investigate or report the concrete blocker instead of unbounded retries. | Progress and retry policy. |

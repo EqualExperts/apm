@@ -2,6 +2,8 @@
 
 The packaged skill is instructions, not an installed Jira automation service. It can guide an active agent from an explicit ticket request. Automatic event-driven execution requires an authorized external dispatcher and a compatible agent runtime. Do not claim a trigger has been configured merely because this skill is installed.
 
+For first use, follow [setup and environment configuration](setup.md) for connected Jira sign-in, direct REST variables, scoped-token routing and a read-only connection check.
+
 ## Capabilities and issue context
 
 Discover available integration tools and their schemas. Establish the Jira site, issue key, project, relevant acceptance fields, repository mapping and current development links. Prefer the user's connected Jira tools where sufficient. If only an issue export is available, record its retrieval date and the limits on current-state verification. Do not guess custom-field identifiers, credentials, repository access or permissions.

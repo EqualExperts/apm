@@ -4,6 +4,8 @@ An experimental [selection](jira-bdd.json) for delivering selected Jira tickets 
 
 The five selected packages are [Jira BDD Delivery](../../.apm/skills/jira-bdd-delivery/SKILL.md), [Parallel Stage Orchestration](../../.apm/skills/parallel-stage-orchestration/SKILL.md), [test-driven development](../../.apm/skills/test-driven-development/SKILL.md), [systematic debugging](../../.apm/skills/systematic-debugging/SKILL.md) and [verification before completion](../../.apm/skills/verification-before-completion/SKILL.md). Each retains its own provenance and limitations; the three existing supporting skills retain their Superpowers attribution and licence.
 
+Start with [Jira setup and environment configuration](../../.apm/skills/jira-bdd-delivery/references/setup.md) for connected sign-in or direct REST credentials, the scoped-token API route, a read-only issue check and separate repository/PR access.
+
 On supported, permitted runtimes, one parent coordinates child tasks across independent ticket slices or stages. Children receive fixed inputs and file ownership; dependent stages wait for accepted prerequisites. The parent integrates and validates combined changes, manages checkpoints and owns Jira/PR publication. Unsupported runtimes execute the same workflow sequentially. Consult the [platform capability matrix](../../.apm/skills/parallel-stage-orchestration/references/platforms.md) rather than inferring support from an assistant label.
 
 The agent continues through unmet criteria and actionable failures until the agreed delivery boundary or a concrete blocker. A review-ready PR is distinct from Jira Done, merge or deployment. Automatic ticket event dispatch needs an external runner; this selection installs neither a trigger nor platform agent configuration.
