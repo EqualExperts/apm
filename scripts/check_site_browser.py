@@ -72,12 +72,16 @@ def check(url):
             page.get_by_role('checkbox', name='Select ' + stack['title'], exact=True).check()
             expect(page.locator('#selection-count')).to_have_text(str(len(stack['packages'])) + ' selected')
             page.locator('#clear-selection').click()
-        delivery_stacks = [stack for stack in data['stacks'] if stack['name'] in ('spdd', 'jira-bdd')]
-        require(len(delivery_stacks) == 2, 'Both delivery stacks must be discoverable')
+        delivery_stacks = [stack for stack in data['stacks'] if stack['name'] in ('sdd', 'spdd', 'jira-bdd')]
+        require(len(delivery_stacks) == 3, 'All three delivery stacks must be discoverable')
         for stack in delivery_stacks:
             page.get_by_role('checkbox', name='Select ' + stack['title'], exact=True).check()
         members = set().union(*(stack['packages'] for stack in delivery_stacks))
         expect(page.locator('#selection-count')).to_have_text(str(len(members)) + ' selected')
+        expect(page.locator('#selection-list li')).to_have_count(len(members))
+        require(page.locator('#selection-list').evaluate('(list) => list.scrollHeight <= list.clientHeight + 1'), 'Toolkit must show every selected package without an inner scrollbar')
+        expect(page.get_by_role('button', name='Remove Jira BDD Delivery', exact=True)).to_be_visible()
+        expect(page.get_by_role('button', name='Remove SPDD Sync', exact=True)).to_be_visible()
         script = page.locator('#selection-script').text_content()
         require(script.count('apm install parallel-stage-orchestration@') == 1, 'Shared orchestration must install once')
         require(script.count('apm install ') == len(members))
